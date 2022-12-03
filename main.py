@@ -1,5 +1,4 @@
-# SQl - Structured Query Language
-# CRUD-create,rekud,update,delete
+
 import sqlite3
 from sqlite3 import Error
 
@@ -21,12 +20,16 @@ def update_students_mark_is_married(conn,id,mark,married_status):
         conn.commit()
     except Error as e:
         print(e)
+
+
 def create_table(conn, sql):
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
     except Error as e:
         print(e)
+
+
 
 def rekud_students(conn):
     try:
@@ -48,6 +51,17 @@ def create_student(conn, student):
     try:
         cursor = conn.cursor()
         cursor.execute(sql,student)
+        conn.commit()
+    except Error as e:
+        print(e)
+
+
+def delete_student(conn, id):
+    sql = '''DELETE FROM student WHERE id=?'''
+
+    try:
+        cursor = conn.cursor()
+        cursor.execute(sql, (id,))
         conn.commit()
     except Error as e:
         print(e)
